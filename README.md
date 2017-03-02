@@ -8,9 +8,14 @@
     - koa-multer
     - koa-logger
     - koa-hetml
+    - koa-jwt
+    - koa-bodyparser
+    - koa-static2
+    - koa-views
   - mongodb & mongoose
-  - jwt/koa-jwt
+  - jsonwebtoken(JWT)
   - aglio/api-blueprint
+  - babel
 
 ### Installation
 
