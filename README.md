@@ -3,10 +3,14 @@
 
 ### Technology
 
-  * koa-static2/koa-router/logger/koa-multer
-  * mongodb & mongoose
-  * jwt/koa-jwt
-  * aglio/api-blueprint
+  - koa-middlewares
+    - koa-router
+    - koa-multer
+    - koa-logger
+    - koa-hetml
+  - mongodb & mongoose
+  - jwt/koa-jwt
+  - aglio/api-blueprint
 
 ### Installation
 
