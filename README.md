@@ -12,7 +12,7 @@
 
 ```javascript 
 
-  $ npm install 
+  $ npm install // install
   
   $ npm start // run
 
