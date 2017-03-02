@@ -1,11 +1,10 @@
 import 'babel-polyfill'
 import User from '../models/users'
-import bcrypt from 'bcrypt-nodejs'
 
 class UsersControllers {
 
     /**
-     * Get all Users
+     * Get all users
      * @param {ctx} Koa Context
      */
     async find(ctx) {
@@ -38,7 +37,10 @@ class UsersControllers {
     async add(ctx) {
         try {
             const user = await new User(ctx.request.body).save()
-            ctx.body = user
+            ctx.body = {
+                retData: user,
+                message: '注册成功'
+            }
         } catch (err) {
             ctx.throw(err)
         }
@@ -90,7 +92,7 @@ class UsersControllers {
     }
 
     /**
-     * login
+     * user login, get token
      * @param {ctx} Koa Context
      */
     async login(ctx, next) {
@@ -105,6 +107,7 @@ class UsersControllers {
                 }
                 user.comparePassword(password, (err, isMatch) => {
                     if (isMatch) {
+                        ctx.state = user._id
                         return next()
                     }
                     ctx.status = 401
@@ -116,7 +119,7 @@ class UsersControllers {
         } catch (err) {
             ctx.status = 401
             ctx.body = {
-                message: 'Authentication Fail'
+                message: '登陆失败'
             }
         }
     }

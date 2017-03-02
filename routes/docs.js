@@ -11,17 +11,20 @@ let options = {
 }
 
 // parse markdown to html
-fs.readFile('api-blueprint/api.md', 'utf8', function (err, blueprint) {
+fs.readFile('api-doc/doc.md', 'utf8', function (err, blueprint) {
     if (err) throw err
     aglio.render(blueprint, options, (err, html, warnings) => {
         if (err) return console.log(err)
+        if (warnings) console.log('build api-doc done~')
         htmlCtx = html
     })
 })
 
 const router = new Router()
 
-router.get('/docs', (ctx, next) => {
+router.prefix('/doc')
+
+router.get('/', (ctx, next) => {
     ctx.body = htmlCtx
     next()
 })
