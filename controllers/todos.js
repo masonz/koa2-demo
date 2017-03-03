@@ -1,5 +1,7 @@
 import 'babel-polyfill'
 import Todo from '../models/todos'
+import User from '../models/todos'
+import getCurUser from '../utils/getCurUser'
 
 class TodosControllers {
 
@@ -8,7 +10,8 @@ class TodosControllers {
      * @param {ctx} Koa Context
      */
     async find(ctx) {
-        ctx.body = await Todo.find()
+        const user = await getCurUser(ctx)
+        ctx.body = await Todo.find().where('user').equals(user)
     }
 
     /**
@@ -36,7 +39,10 @@ class TodosControllers {
      */
     async add(ctx) {
         try {
-            const todo = await new Todo(ctx.request.body).save()
+            const { body } = ctx.request
+            const user = await getCurUser(ctx)
+            let data = { ...body, user }
+            const todo = await new Todo(data).save()
             ctx.body = todo
         } catch (err) {
             ctx.throw(422)

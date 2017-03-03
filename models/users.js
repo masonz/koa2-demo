@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt-nodejs'
+import autopopulate from 'mongoose-autopopulate'
 
 const Schema = mongoose.Schema
 
@@ -20,7 +21,10 @@ const userSchema = Schema({
         minlength: 8
     },
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    todolist: [
+        { type: Schema.Types.ObjectId, ref: 'todos', autopopulate: true }
+    ]
 })
 
 userSchema.pre('save', function (next) {
@@ -38,5 +42,7 @@ userSchema.methods.comparePassword = function (attemptedPassword, callback) {
         callback(null, isMatch)
     })
 }
+
+userSchema.plugin(autopopulate)
 
 export default mongoose.model('users', userSchema)

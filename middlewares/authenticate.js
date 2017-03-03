@@ -2,10 +2,11 @@ import jwt from 'jsonwebtoken'
 
 export default function (ctx) {
     ctx.status = 200
+    const { state } = ctx
     return ctx.body = {
-        uid: ctx.state,
+        uid: state,
         token: jwt.sign(
-            { role: 'admin' },
+            { user: state },
             'Mason',
             { expiresIn: '2 days' }
         ),

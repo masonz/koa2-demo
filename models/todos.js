@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import autopopulate from 'mongoose-autopopulate'
 
 const Schema = mongoose.Schema
 
@@ -20,7 +21,10 @@ const todoSchema = Schema({
         default: false
     },
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    user: { type: Schema.Types.ObjectId, ref: 'users', autopopulate: { select: 'username' } }
 })
+
+todoSchema.plugin(autopopulate)
 
 export default mongoose.model('todos', todoSchema)
