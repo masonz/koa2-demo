@@ -25,6 +25,6 @@
   
   $ npm start // run
   
-  open url localhost:3000 
+  open url localhost:3001
 
 ```
