@@ -1,6 +1,6 @@
 import 'babel-polyfill'
 import Todo from '../models/todos'
-import User from '../models/todos'
+import User from '../models/users'
 import getCurUser from '../utils/getCurUser'
 
 class TodosControllers {
@@ -42,7 +42,15 @@ class TodosControllers {
             const { body } = ctx.request
             const user = await getCurUser(ctx)
             let data = { ...body, user }
-            const todo = await new Todo(data).save()
+            let todo = await new Todo(data)
+            let promise = todo.save()
+            promise.then(t => {
+                let query = User.findById(user)
+                query.then((doc) => {
+                    doc.todolist.push(t._id)
+                    doc.save()
+                })
+            })
             ctx.body = todo
         } catch (err) {
             ctx.throw(422)
@@ -55,12 +63,14 @@ class TodosControllers {
      */
     async update(ctx) {
         try {
-            const todo = await Todo.findByIdAndUpdate(ctx.params.id,
-                { ...ctx.request.body, updated_at: Date.now() })
+            const { body } = ctx.request
+            const { id } = ctx.params
+            const todo = await Todo.findByIdAndUpdate(id,
+                { ...body, updated_at: Date.now() })
             if (!todo) {
                 ctx.throw(404)
             }
-            const updated = await Todo.findById(ctx.params.id)
+            const updated = await Todo.findById(id)
             ctx.body = updated
         } catch (err) {
             if (err.name === 'CastError' || err.name === 'NotFoundError') {

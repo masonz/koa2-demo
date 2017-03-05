@@ -5,6 +5,7 @@ import helmet from 'koa-helmet'
 import mongoose from 'mongoose'
 import routing from './routes/'
 import serve from "koa-static2"
+import favicon from 'koa-favicon'
 import bodyparser from 'koa-bodyparser'
 import { port, connexionString } from './config.js'
 
@@ -21,6 +22,7 @@ app
   .use(logger())
   .use(bodyparser())
   .use(helmet())
+  .use(favicon(__dirname + '/public/images/favicon.ico'))
   .use(views(__dirname + "/views", { extension: 'jade' }))
 // .use(koaSwagger({
 //   routePrefix: '/swagger', // host at /swagger instead of default /docs 
