@@ -23,7 +23,7 @@ app
   .use(bodyparser())
   .use(helmet())
   .use(favicon(__dirname + '/public/images/favicon.ico'))
-  .use(views(__dirname + "/views", { extension: 'jade' }))
+  .use(views(__dirname + "/views", { extension: 'pug' }))
 // .use(koaSwagger({
 //   routePrefix: '/swagger', // host at /swagger instead of default /docs 
 //   swaggerOptions: {
