@@ -9,10 +9,6 @@ main {
     flex: 1 0 auto;
 }
 
-ul>li {
-    margin: 0 5px
-}
-
 center:first-child {
     padding-top: 12vh;
 }
@@ -31,7 +27,7 @@ center:first-child {
     color: #e91e63;
 }
 
-input[type=email].validate+label,
+input[type=text].validate+label,
 input[type=password].validate+label {
     width: auto
 }
