@@ -23,7 +23,7 @@ const userSchema = Schema({
     created_at: Date,
     updated_at: Date,
     todolist: [
-        { type: Schema.Types.ObjectId, ref: 'todos', autopopulate: true }
+        { type: Schema.Types.ObjectId, ref: 'todos', autopopulate: { select: 'title done finish_time -_id' } }
     ]
 })
 

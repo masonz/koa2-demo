@@ -1,0 +1,33 @@
+extends layout.pug
+
+block content
+
+  center
+      img(class="responsive-img", src="http://i.imgur.com/ax0NCsK.gif", style={width: '250px'})
+      div(class="section")
+
+      h5(class="indigo-text") 
+      div(class="section")
+
+      div(class="container")
+        div(class="z-depth-1 grey lighten-4 row wapper-login")
+
+          form(class="col s12", method="post")
+            div(class='row')
+              div(class='col s12')
+
+            div(class='row')
+              div(class='input-field col s12')
+                input#email(class='validate', name='email', type='email')/
+                label(for='email') 账号/用户名
+
+            div(class='row')
+              div(class='input-field col s12')
+                input#password(class='validate', name='password', type='password')/
+                label(for='password') 密码
+              label(class='pink-text',href='#',style={float: 'right'}): b 忘记密码?
+
+            br/
+            center
+              div(class='row')
+                button(class='col s12 btn btn-large waves-effect red lighten-3', name='btn_login', type='submit') 登录

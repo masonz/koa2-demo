@@ -4,7 +4,7 @@ import Router from 'koa-router'
 const router = new Router()
 
 router.get('/', (ctx) => {
-    return ctx.render('index', { company: ["alibaba", "tencent", "baidu"] })
+    return ctx.render('login')
 })
 
 export default router

@@ -20,6 +20,10 @@ const todoSchema = Schema({
         type: Boolean,
         default: false
     },
+    finish_time: {
+        type: Date,
+        required: true
+    },
     created_at: Date,
     updated_at: Date,
     user: { type: Schema.Types.ObjectId, ref: 'users', autopopulate: { select: 'username' } }
