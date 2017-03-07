@@ -11,7 +11,7 @@ let options = {
 }
 
 // parse markdown to html
-fs.readFile('api-doc/doc.md', 'utf8', function (err, blueprint) {
+fs.readFile('docs/doc.md', 'utf8', function (err, blueprint) {
     if (err) throw err
     aglio.render(blueprint, options, (err, html, warnings) => {
         if (err) return console.log(err)
