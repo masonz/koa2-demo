@@ -2,13 +2,15 @@ html
 
   head
     title Koa2 - Demo
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(href="//cdn.bootcss.com/normalize/5.0.0/normalize.min.css", rel="stylesheet")
     link(href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet")
     link(href="//cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css", rel="stylesheet")
     link(href='//cdn.bootcss.com/materialize/0.98.0/css/materialize.min.css', rel='stylesheet')
-    link(href='/public/stylesheets/style.css', rel='stylesheet')
+    link(href='/server/public/stylesheets/style.css', rel='stylesheet')
 
   body
+    div#root()
     include head.pug
     main(class="grey lighten-4")
         block content

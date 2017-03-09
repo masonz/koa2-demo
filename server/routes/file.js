@@ -2,7 +2,7 @@ import path from 'path'
 import crypto from 'crypto'
 import Router from 'koa-router'
 import multer from 'koa-multer'
-import { baseApi } from '../config'
+import { baseApi } from '../../config'
 import jwt from '../middlewares/jwt'
 // import FileController from '../controllers/file'
 

@@ -1,6 +1,6 @@
 import 'babel-polyfill'
 import Router from 'koa-router'
-import { baseApi } from '../config'
+import { baseApi } from '../../config'
 import jwt from '../middlewares/jwt'
 import TodosController from '../controllers/todos'
 

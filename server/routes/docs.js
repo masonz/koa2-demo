@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import aglio from 'aglio'
 import Router from 'koa-router'
 import fs from 'fs'
+import path from 'path'
 
 let htmlCtx = ''
 
@@ -11,7 +12,8 @@ let options = {
 }
 
 // parse markdown to html
-fs.readFile('docs/doc.md', 'utf8', function (err, blueprint) {
+
+fs.readFile('./server/docs/doc.md', 'utf8', function (err, blueprint) {
     if (err) throw err
     aglio.render(blueprint, options, (err, html, warnings) => {
         if (err) return console.log(err)

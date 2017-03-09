@@ -1,15 +1,17 @@
 import React from 'react'
-import { Route, IndexRoute } from 'react-router'
+import { render } from 'react-dom'
+import { Router, match, browserHistory } from 'react-router'
+import { Provider } from 'react-redux'
+import routes from './routes'
+import configureStore from './common/store/configureStore'
 
-import App from './index';
-import Head from './Head';
-import Foot from './Foot';
+const store = configureStore(window.REDUX_STATE)
 
-export const routes = (
-  <Route path="/" component={App}>
-    <IndexRoute component={UserProfile}/>
-    <Route path="/counter" component={Counter}/>
-  </Route>
-);
-
-export default routes
+match({ history: browserHistory, routes }, (error, redirectLocation, renderProps) => {
+  render(
+    <Provider store={store}>
+      <Router {...renderProps} />
+    </Provider>,
+    document.getElementById('root')
+  )
+})
